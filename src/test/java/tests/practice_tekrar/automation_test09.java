@@ -2,6 +2,7 @@ package tests.practice_tekrar;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.After;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
@@ -28,25 +29,20 @@ public class automation_test09 {
     @Test
     public  void Test09(){
 
-        //2. Navigate to url 'http://automationexercise.com'('http://automationexercise.com' URL'sine gidin.)
+        //2. Navigate to url 'http://automationexercise.com'
         driver.get("http://automationexercise.com");
-        //3. Verify that home page is visible successfully(Ana sayfanın başarılı bir şekilde görüntülendiğini doğrulayın)
+        //3. Verify that home page is visible successfully(Ana sayfanın başarıyla görüntülendiğini doğrulayın.)
         WebElement homePage = driver.findElement(By.xpath(" //*[text()=' Home' ]"));
-        if (homePage.getText().equals("Home Page")) {
-            System.out.println("Ana sayfa başarıyla yüklendi.");
-        } else {
-            System.out.println("Ana sayfa yüklenirken bir hata oluştu.");
-        }
+       // WebElement homepage=driver.findElement(By.xpath("//section[@id='slider']"));
+        Assert.assertTrue(homePage.isDisplayed());
+
         //4. Click on 'Products' button('Ürünler' düğmesine tıklayın.)
-        WebElement productsButton = driver.findElement(By.linkText("Products"));
-        productsButton.click();
+        driver.findElement(By.linkText("//i[@class='fa fa-envelope']")).click();
+
         //5. Verify user is navigated to ALL PRODUCTS page successfully( Kullanıcının başarıyla TÜM ÜRÜNLER sayfasına yönlendirildiğini doğrulayın.)
-        WebElement allProductsPage = driver.findElement(By.cssSelector("h2"));
-        if (allProductsPage.getText().equals("ALL PRODUCTS")) {
-            System.out.println("TÜM ÜRÜNLER sayfasına başarıyla yönlendirildi.");
-        } else {
-            System.out.println("TÜM ÜRÜNLER sayfasına yönlendirilirken bir hata oluştu.");
-        }
+
+        WebElement allProducts=driver.findElement(By.className("features_items"));
+        Assert.assertTrue(allProducts.isEnabled());
         //6. Enter product name in search input and click search button(Arama girişine ürün adını girin ve arama düğmesine tıklayın.)
         WebElement searchInput = driver.findElement(By.id("searchInput"));
         searchInput.sendKeys("ürün adı");
@@ -55,11 +51,7 @@ public class automation_test09 {
         searchButton.click();
         //7. Verify 'SEARCHED PRODUCTS' is visible('ARANAN ÜRÜNLER' görünür olup olmadığını doğrulayın.)
         WebElement searchedProducts = driver.findElement(By.cssSelector(".search-results"));
-        if (searchedProducts.isDisplayed()) {
-            System.out.println("'ARANAN ÜRÜNLER' bölümü görünür.");
-        } else {
-            System.out.println("'ARANAN ÜRÜNLER' bölümü görünür değil.");
-        }
+
         //8. Verify all the products related to search are visible( Aramayla ilgili tüm ürünlerin görünür olduğunu doğrulayın.)
         List<WebElement> searchResults = driver.findElements(By.cssSelector(".search-results .product"));
         if (searchResults.size() > 0) {
