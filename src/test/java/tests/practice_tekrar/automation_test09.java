@@ -49,7 +49,7 @@ public class automation_test09 extends TestBase {
 
         WebElement allproducts=driver.findElement(By.xpath(" //*[@class='features_items']"));
         Assert.assertTrue(allproducts.isDisplayed());
-        System.out.println("all products: test passed");
+        System.out.println("all products: testi passed");
 
 
         }
