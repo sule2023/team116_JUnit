@@ -27,11 +27,12 @@ public class automation_test10 extends TestBase {
             Assert.assertTrue(HomePage.isDisplayed());
             System.out.println("Home PAGE : testi PASSED");
 
-            //4. Scroll down to footer
-            JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
-            jsExecutor.executeScript("window.scrollTo(0, document.body.scrollHeight)");
+            //4. Scroll down to footer(Altbilgiye doğru aşağı kaydır)
+            // not bu ksisimda Javascrip  sitesinden to footer icin gererkli argumeni almalisin
+           JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
+           jsExecutor.executeScript("window.scrollTo(0, document.body.scrollHeight)");
 
-
+            bekle(3);
             //5. Verify text 'SUBSCRIPTION'('SUBSCRIPTION' metnini doğrula)
             WebElement textSubscription = driver.findElement(By.xpath("//*[text()='Subscription']"));
             Assert.assertTrue(textSubscription.isDisplayed());
@@ -43,7 +44,7 @@ public class automation_test10 extends TestBase {
              emailAdres.sendKeys("sule@gmail.com"+Keys.ENTER);
 
             //7. Verify success message 'You have been successfully subscribed!' is visible
-            // WebElement yazi=driver.findElement(By.xpath("//div[@class='status alert alert-success']"));
+            //WebElement yazi=driver.findElement(By.xpath("//div[@class='status alert alert-success']"));
             //Assert.assertTrue(yazi.isDisplayed());
             Assert.assertTrue(driver.findElement(By.id("success-subscribe")).isDisplayed());
 
